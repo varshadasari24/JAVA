@@ -1,0 +1,183 @@
+import java.util.*;
+
+class Student {
+    int id;
+    String name;
+    int age;
+    String course;
+    double marks;
+
+    void input(Scanner sc) {
+        System.out.print("Enter id: ");
+        id = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter name: ");
+        name = sc.nextLine();
+
+        System.out.print("Enter age: ");
+        age = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter course: ");
+        course = sc.nextLine();
+
+        System.out.print("Enter marks: ");
+        marks = sc.nextDouble();
+    }
+
+    void display() {
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Course: " + course);
+        System.out.println("Marks: " + marks);
+        System.out.println("");
+    }
+}
+
+public class StudentManagementSystem {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Student> list = new ArrayList<>();
+
+        int choice;
+
+        do {
+            System.out.println("\nMENU");
+            System.out.println("1. Add Student");
+            System.out.println("2. Display All");
+            System.out.println("3. Search by ID");
+            System.out.println("4. Marks Above");
+            System.out.println("5. Average Marks");
+            System.out.println("6. Sort by Marks");
+            System.out.println("7. Update Student");
+            System.out.println("8. Delete Student");
+            System.out.println("9. Exit");
+
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            if (choice == 1) {
+                Student s = new Student();
+                s.input(sc);
+                list.add(s);
+                System.out.println("Student added");
+            }
+
+            else if (choice == 2) {
+                if (list.size() == 0) {
+                    System.out.println("No students found");
+                } else {
+                    for (int i = 0; i < list.size(); i++) {
+                        list.get(i).display();
+                    }
+                }
+            }
+
+            else if (choice == 3) {
+                System.out.print("Enter id: ");
+                int id = sc.nextInt();
+
+                boolean found = false;
+
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).id == id) {
+                        list.get(i).display();
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("Student not found");
+                }
+            }
+
+            else if (choice == 4) {
+                System.out.print("Enter marks: ");
+                double m = sc.nextDouble();
+
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).marks > m) {
+                        list.get(i).display();
+                    }
+                }
+            }
+
+            else if (choice == 5) {
+                double sum = 0;
+
+                for (int i = 0; i < list.size(); i++) {
+                    sum = sum + list.get(i).marks;
+                }
+
+                if (list.size() > 0) {
+                    double avg = sum / list.size();
+                    System.out.println("Average = " + avg);
+                } else {
+                    System.out.println("No data");
+                }
+            }
+
+            else if (choice == 6) {
+                for (int i = 0; i < list.size(); i++) {
+                    for (int j = i + 1; j < list.size(); j++) {
+
+                        if (list.get(i).marks < list.get(j).marks) {
+
+                            Student temp = list.get(i);
+                            list.set(i, list.get(j));
+                            list.set(j, temp);
+                        }
+                    }
+                }
+                System.out.println("Sorted by marks");
+            }
+
+            else if (choice == 7) {
+                System.out.print("Enter id: ");
+                int id = sc.nextInt();
+
+                boolean found = false;
+
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).id == id) {
+                        list.get(i).input(sc);
+                        found = true;
+                        System.out.println("Updated");
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("Student not found");
+                }
+            }
+
+            else if (choice == 8) {
+                System.out.print("Enter id: ");
+                int id = sc.nextInt();
+
+                boolean found = false;
+
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).id == id) {
+                        list.remove(i);
+                        found = true;
+                        System.out.println("Deleted");
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("Student not found");
+                }
+            }
+
+        } while (choice != 9);
+
+        System.out.println("Program ended");
+        sc.close();
+    }
+}
