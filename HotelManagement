@@ -1,0 +1,75 @@
+import java.util.Scanner;
+public class HotelManagement {
+        public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+        int choice, item, qty;
+        int price = 0;
+        int total = 0;
+        System.out.println("===== Welcome to My Hotel =====");
+        System.out.println("Available Food Types:");
+        System.out.println("1. Fried Rice");
+        System.out.println("2. Fried Noodles");
+        System.out.println("3. Biryani");
+        System.out.println("4. Juices");
+        System.out.print("Select a category: ");
+        choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                System.out.println("---- Fried Rice Menu ----");
+                System.out.println("1. Veg Fried Rice - 120");
+                System.out.println("2. Egg Fried Rice - 140");
+                System.out.println("3. Chicken Fried Rice - 160");
+                System.out.print("Select item: ");
+                item = sc.nextInt();
+                if (item == 1) price = 120;
+                else if (item == 2) price = 140;
+                else if (item == 3) price = 160;
+                break;
+            case 2:
+                System.out.println("---- Fried Noodles Menu ----");
+                System.out.println("1. Veg Noodles - 110");
+                System.out.println("2. Egg Noodles - 130");
+                System.out.println("3. Chicken Noodles - 150");
+                System.out.print("Select item: ");
+                item = sc.nextInt();
+                if (item == 1) price = 110;
+                else if (item == 2) price = 130;
+                else if (item == 3) price = 150;
+                break;
+            case 3:
+                System.out.println("---- Biryani Menu ----");
+                System.out.println("1. Veg Biryani - 150");
+                System.out.println("2. Chicken Biryani - 200");
+                System.out.println("3. Mutton Biryani - 250");
+                System.out.print("Select item: ");
+                item = sc.nextInt();
+                if (item == 1) price = 150;
+                else if (item == 2) price = 200;
+                else if (item == 3) price = 250;
+                break;
+            case 4:
+                System.out.println("---- Juice Menu ----");
+                System.out.println("1. Orange Juice - 80");
+                System.out.println("2. Apple Juice - 90");
+                System.out.println("3. Mango Juice - 100");
+                System.out.print("Select item: ");
+                item = sc.nextInt();
+                if (item == 1) price = 80;
+                else if (item == 2) price = 90;
+                else if (item == 3) price = 100;
+                break;
+            default:
+                System.out.println("Invalid choice");
+                return;
+        }
+        System.out.print("Enter quantity: ");
+        qty = sc.nextInt();
+        total = price * qty;
+        System.out.println("===== Final Bill =====");
+        System.out.println("Price per item: " + price);
+        System.out.println("Quantity: " + qty);
+        System.out.println("Total Bill: " + total);
+        System.out.println("Thank you! Visit Again ");
+        sc.close();
+    }
+}
